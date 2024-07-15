@@ -1,0 +1,62 @@
+#!/data/data/com.termux/files/usr/bin/python
+import os,sys
+try:
+    import phonenumbers
+except:
+    os.system("pip install phonenumbers")
+    import phonenumbers
+import time as tm
+from phonenumbers import geocoder,timezone,carrier
+os.system("clear")
+
+# Main Bammer .....
+logo="""\a\a\n\33[32;1m
+    CREEPY BEAST 
+             aka
+          barru9
+\33[0m                          ~created by barru9
+\33[35m                           Github:barru9\33[0m
+"""
+# Small banner......
+smlogo="""\33[31;1m
+      CREEPY BEAST 
+             aka
+          barru9 \33[0m
+phone number information gathering tool
+----------------------------------------"""
+print(logo)
+
+# taking input from user 
+number=input("Number laiye janab: ")
+
+# this will print letters 1 by 1
+def rprint(s):
+    for anon in s + '\n':
+        sys.stdout.write(anon)
+        sys.stdout.flush()
+        tm.sleep(0.01)
+
+# using module phonenumbers
+phone=phonenumbers.parse(number)
+vlid=phonenumbers.is_valid_number(phone)
+carr=carrier.name_for_number(phone,"en")
+time=timezone.time_zones_for_number(phone)
+regn=geocoder.description_for_number(phone,"en")
+
+# printing all information
+os.system("clear")
+print(smlogo)
+print("\33[32mSabar rakh information dhoond raha hu\n")
+tm.sleep(2)
+print(phone)
+rprint("\33[33m-----------------------------------------\33[0m")
+print("Kia ye number valid hai? : ",vlid)
+rprint("\33[33m-----------------------------------------\33[0m")
+print("Carrier (ISP) (tata docomo=airtel) : ",carr)
+rprint("\33[33m-----------------------------------------\33[0m")
+print("Timezone (faltu cheez) : ",time)
+rprint("\33[33m-----------------------------------------\33[0m")
+print("Region (country) : ",regn)
+rprint("\33[33m-----------------------------------------\33[0m")
+print("\n\33[35mHogaya kaam Barkatmon :-)")
+
